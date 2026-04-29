@@ -4,168 +4,168 @@
 
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f1419;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1a2332;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#0f1419"/>
+      <stop offset="100%" style="stop-color:#1a2332"/>
     </linearGradient>
-    <linearGradient id="greenBar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    <linearGradient id="cpuGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2ecc71"/>
+      <stop offset="100%" style="stop-color:#27ae60"/>
     </linearGradient>
-    <linearGradient id="yellowBar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#e67e22;stop-opacity:1" />
+    <linearGradient id="cpuYellow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f39c12"/>
+      <stop offset="100%" style="stop-color:#e67e22"/>
     </linearGradient>
-    <linearGradient id="redBar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    <linearGradient id="cpuRed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#c0392b"/>
+    </linearGradient>
+    <linearGradient id="memGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3498db"/>
+      <stop offset="100%" style="stop-color:#2980b9"/>
     </linearGradient>
     <linearGradient id="zombieGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8e44ad;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#9b59b6"/>
+      <stop offset="100%" style="stop-color:#8e44ad"/>
     </linearGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="300" fill="url(#bg)" rx="12" ry="12"/>
+  <rect width="800" height="300" fill="url(#bg)" rx="10"/>
 
-  <!-- Grid lines (subtle) -->
-  <g stroke="#2c3e50" stroke-width="0.5" opacity="0.2">
-    <line x1="0" y1="60" x2="800" y2="60"/>
-    <line x1="0" y1="120" x2="800" y2="120"/>
-    <line x1="0" y1="180" x2="800" y2="180"/>
-    <line x1="0" y1="240" x2="800" y2="240"/>
+  <!-- ==================== LEFT: TREE VISUALIZATION (0-480) ==================== -->
+
+  <!-- Tree connectors -->
+  <g stroke="#4a6572" stroke-width="1.5" fill="none">
+    <!-- Root [1] to children -->
+    <path d="M 85 95 L 85 110 L 40 110 L 40 135"/>
+    <path d="M 85 110 L 135 110 L 135 135"/>
+    <!-- Child [3042] to grandchildren -->
+    <path d="M 40 135 L 40 175"/>
+    <path d="M 40 175 L 20 175 L 20 220"/>
+    <path d="M 40 175 L 65 175 L 65 220"/>
+    <!-- Child [18500] to zombie -->
+    <path d="M 135 135 L 135 175"/>
+    <path d="M 135 175 L 180 175 L 180 220"/>
   </g>
 
-  <!-- ===== LEFT SIDE: TREE VISUALIZATION ===== -->
-
-  <!-- Tree connecting lines -->
-  <g stroke="#4a6572" stroke-width="2" fill="none">
-    <!-- root (1) to children -->
-    <path d="M 95 85 L 95 100 L 50 100 L 50 125"/>
-    <path d="M 95 100 L 155 100 L 155 125"/>
-    <!-- child 1 (3042) to grandchildren -->
-    <path d="M 50 125 L 50 160"/>
-    <path d="M 50 160 L 25 160 L 25 200"/>
-    <path d="M 50 160 L 80 160 L 80 200"/>
-    <!-- child 2 (18500) to zombie -->
-    <path d="M 155 125 L 155 155"/>
-    <path d="M 155 155 L 195 155 L 195 195"/>
+  <!-- Root node: init [1] -->
+  <g transform="translate(35, 65)">
+    <rect width="100" height="36" rx="5" fill="#1a252f" stroke="#3498db" stroke-width="2"/>
+    <!-- CPU bar -->
+    <rect x="8" y="8" width="5" height="20" rx="2" fill="url(#cpuGreen)"/>
+    <rect x="15" y="12" width="30" height="5" rx="1" fill="#27ae60"/>
+    <rect x="15" y="22" width="22" height="4" rx="1" fill="#1a5276"/>
+    <!-- Label -->
+    <text x="50" y="24" font-family="monospace" font-size="11" fill="#ecf0f1" text-anchor="middle">init [1]</text>
   </g>
 
-  <!-- Level 1: Root node init [1] -->
-  <rect x="45" y="55" width="100" height="36" rx="6" fill="#2c3e50" stroke="#3498db" stroke-width="2"/>
-  <rect x="51" y="61" width="6" height="24" rx="2" fill="#2ecc71"/>
-  <rect x="62" y="65" width="30" height="7" rx="2" fill="#27ae60"/>
-  <rect x="62" y="76" width="24" height="5" rx="1" fill="#1a5276"/>
-  <text x="95" y="81" font-family="monospace" font-size="11" fill="#ecf0f1" text-anchor="middle">init [1]</text>
-
-  <!-- Level 2: Child node 1 - bash [3042] -->
-  <rect x="10" y="128" width="90" height="32" rx="5" fill="#2c3e50" stroke="#2ecc71" stroke-width="2"/>
-  <rect x="16" y="134" width="5" height="20" rx="1" fill="#2ecc71"/>
-  <rect x="26" y="138" width="28" height="5" rx="1" fill="#27ae60"/>
-  <rect x="26" y="147" width="22" height="4" rx="1" fill="#1a5276"/>
-  <text x="55" y="151" font-family="monospace" font-size="10" fill="#ecf0f1" text-anchor="middle">bash [3042]</text>
-
-  <!-- Level 2: Child node 2 - python [18500] -->
-  <rect x="110" y="128" width="95" height="32" rx="5" fill="#2c3e50" stroke="#f39c12" stroke-width="2"/>
-  <rect x="116" y="134" width="7" height="20" rx="2" fill="#f39c12"/>
-  <rect x="128" y="138" width="32" height="5" rx="1" fill="#e67e22"/>
-  <rect x="128" y="147" width="26" height="4" rx="1" fill="#1a5276"/>
-  <text x="158" y="151" font-family="monospace" font-size="10" fill="#ecf0f1" text-anchor="middle">python [18500]</text>
-
-  <!-- Level 3: Grandchild 1 - ssh [22110] -->
-  <rect x="0" y="203" width="70" height="28" rx="4" fill="#2c3e50" stroke="#27ae60" stroke-width="1.5"/>
-  <rect x="5" y="208" width="4" height="18" rx="1" fill="#2ecc71"/>
-  <rect x="13" y="211" width="22" height="4" rx="1" fill="#27ae60"/>
-  <rect x="13" y="218" width="16" height="3" rx="1" fill="#1a5276"/>
-  <text x="35" y="223" font-family="monospace" font-size="9" fill="#ecf0f1" text-anchor="middle">ssh [22110]</text>
-
-  <!-- Level 3: Grandchild 2 - ruby [22115] -->
-  <rect x="58" y="203" width="60" height="28" rx="4" fill="#2c3e50" stroke="#27ae60" stroke-width="1.5"/>
-  <rect x="63" y="208" width="4" height="18" rx="1" fill="#2ecc71"/>
-  <rect x="71" y="211" width="18" height="4" rx="1" fill="#27ae60"/>
-  <rect x="71" y="218" width="14" height="3" rx="1" fill="#1a5276"/>
-  <text x="88" y="223" font-family="monospace" font-size="9" fill="#ecf0f1" text-anchor="middle">ruby [15]</text>
-
-  <!-- Level 3: Zombie - defunct [Z] -->
-  <rect x="155" y="198" width="85" height="32" rx="5" fill="#2c3e50" stroke="#9b59b6" stroke-width="2.5"/>
-  <rect x="161" y="204" width="5" height="20" rx="2" fill="#9b59b6"/>
-  <rect x="171" y="208" width="28" height="5" rx="1" fill="#8e44ad"/>
-  <rect x="171" y="217" width="22" height="4" rx="1" fill="#1a5276"/>
-  <text x="198" y="220" font-family="monospace" font-size="10" fill="#9b59b6" text-anchor="middle">defunct [Z]</text>
-
-  <!-- ===== DIVIDER ===== -->
-  <line x1="270" y1="20" x2="270" y2="280" stroke="#34495e" stroke-width="1.5"/>
-
-  <!-- ===== RIGHT SIDE: INFO PANEL ===== -->
-
-  <!-- Title block -->
-  <g transform="translate(300, 35)">
-    <text x="0" y="22" font-family="monospace" font-size="22" fill="#ecf0f1" font-weight="bold">proctree</text>
-    <text x="0" y="46" font-family="monospace" font-size="13" fill="#7f8c8d">Process Tree Visualizer</text>
+  <!-- Child 1: bash [3042] -->
+  <g transform="translate(5, 138)">
+    <rect width="90" height="34" rx="5" fill="#1a252f" stroke="#2ecc71" stroke-width="2"/>
+    <rect x="7" y="7" width="4" height="20" rx="1" fill="url(#cpuGreen)"/>
+    <rect x="14" y="11" width="26" height="4" rx="1" fill="#27ae60"/>
+    <rect x="14" y="20" width="20" height="3" rx="1" fill="#1a5276"/>
+    <text x="45" y="22" font-family="monospace" font-size="10" fill="#ecf0f1" text-anchor="middle">bash [3042]</text>
   </g>
 
-  <!-- CPU indicator block -->
-  <g transform="translate(300, 95)">
-    <rect x="0" y="0" width="22" height="14" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="1"/>
-    <rect x="2" y="2" width="8" height="10" rx="1" fill="#2ecc71"/>
-    <rect x="12" y="2" width="8" height="10" rx="1" fill="#2ecc71"/>
-    <text x="30" y="12" font-family="monospace" font-size="12" fill="#95a5a6">CPU Usage</text>
-
-    <!-- mini bar samples -->
-    <rect x="110" y="2" width="12" height="10" rx="2" fill="#2ecc71"/>
-    <rect x="126" y="2" width="12" height="10" rx="2" fill="#2ecc71"/>
-    <rect x="142" y="2" width="12" height="10" rx="2" fill="#f39c12"/>
-    <rect x="158" y="2" width="12" height="10" rx="2" fill="#e74c3c"/>
-    <rect x="174" y="2" width="8" height="10" rx="2" fill="#34495e"/>
+  <!-- Child 2: python [18500] -->
+  <g transform="translate(100, 138)">
+    <rect width="95" height="34" rx="5" fill="#1a252f" stroke="#f39c12" stroke-width="2"/>
+    <rect x="7" y="7" width="6" height="20" rx="2" fill="url(#cpuYellow)"/>
+    <rect x="16" y="11" width="32" height="4" rx="1" fill="#e67e22"/>
+    <rect x="16" y="20" width="26" height="3" rx="1" fill="#1a5276"/>
+    <text x="48" y="22" font-family="monospace" font-size="10" fill="#ecf0f1" text-anchor="middle">python [18500]</text>
   </g>
 
-  <!-- Memory indicator block -->
-  <g transform="translate(300, 120)">
-    <rect x="0" y="0" width="22" height="14" rx="3" fill="#2c3e50" stroke="#34495e" stroke-width="1"/>
-    <rect x="2" y="2" width="10" height="10" rx="1" fill="#27ae60"/>
-    <rect x="14" y="2" width="6" height="10" rx="1" fill="#27ae60"/>
-    <text x="30" y="12" font-family="monospace" font-size="12" fill="#95a5a6">Memory Usage</text>
-
-    <!-- mini bar samples -->
-    <rect x="130" y="2" width="16" height="10" rx="2" fill="#27ae60"/>
-    <rect x="150" y="2" width="10" height="10" rx="2" fill="#f39c12"/>
-    <rect x="164" y="2" width="14" height="10" rx="2" fill="#e74c3c"/>
-    <rect x="182" y="2" width="10" height="10" rx="2" fill="#34495e"/>
+  <!-- Grandchild: ssh [22110] -->
+  <g transform="translate(0, 223)">
+    <rect width="70" height="28" rx="4" fill="#1a252f" stroke="#27ae60" stroke-width="1.5"/>
+    <rect x="6" y="6" width="4" height="16" rx="1" fill="url(#cpuGreen)"/>
+    <rect x="13" y="9" width="20" height="4" rx="1" fill="#27ae60"/>
+    <rect x="13" y="17" width="14" height="3" rx="1" fill="#1a5276"/>
+    <text x="35" y="19" font-family="monospace" font-size="8" fill="#ecf0f1" text-anchor="middle">ssh [22110]</text>
   </g>
 
-  <!-- Legend block -->
-  <g transform="translate(300, 155)">
+  <!-- Grandchild 2: ruby [22115] -->
+  <g transform="translate(45, 223)">
+    <rect width="65" height="28" rx="4" fill="#1a252f" stroke="#27ae60" stroke-width="1.5"/>
+    <rect x="6" y="6" width="3" height="16" rx="1" fill="url(#cpuGreen)"/>
+    <rect x="12" y="9" width="18" height="4" rx="1" fill="#27ae60"/>
+    <rect x="12" y="17" width="12" height="3" rx="1" fill="#1a5276"/>
+    <text x="33" y="19" font-family="monospace" font-size="8" fill="#ecf0f1" text-anchor="middle">ruby [15]</text>
+  </g>
+
+  <!-- Zombie: defunct [Z] -->
+  <g transform="translate(145, 223)">
+    <rect width="80" height="32" rx="5" fill="#1a252f" stroke="#9b59b6" stroke-width="2.5"/>
+    <rect x="7" y="7" width="5" height="18" rx="2" fill="url(#zombieGrad)"/>
+    <rect x="15" y="11" width="26" height="4" rx="1" fill="#8e44ad"/>
+    <rect x="15" y="19" width="18" height="3" rx="1" fill="#1a5276"/>
+    <text x="40" y="25" font-family="monospace" font-size="9" fill="#9b59b6" text-anchor="middle">defunct [Z]</text>
+  </g>
+
+  <!-- ==================== DIVIDER (480-510) ==================== -->
+  <line x1="500" y1="25" x2="500" y2="275" stroke="#2c3e50" stroke-width="1.5"/>
+
+  <!-- ==================== RIGHT: INFO PANEL (530-780) ==================== -->
+
+  <!-- Title -->
+  <text x="540" y="55" font-family="monospace" font-size="28" fill="#ecf0f1" font-weight="bold">proctree</text>
+
+  <!-- Subtitle -->
+  <text x="540" y="80" font-family="monospace" font-size="14" fill="#7f8c8d">Process Tree Visualizer</text>
+
+  <!-- CPU section -->
+  <g transform="translate(540, 105)">
+    <text x="0" y="0" font-family="monospace" font-size="12" fill="#95a5a6">CPU</text>
+    <g transform="translate(50, -10)">
+      <rect x="0" y="0" width="12" height="10" rx="2" fill="url(#cpuGreen)"/>
+      <rect x="16" y="0" width="12" height="10" rx="2" fill="url(#cpuGreen)"/>
+      <rect x="32" y="0" width="12" height="10" rx="2" fill="url(#cpuYellow)"/>
+      <rect x="48" y="0" width="12" height="10" rx="2" fill="url(#cpuRed)"/>
+      <rect x="64" y="0" width="8" height="10" rx="2" fill="#34495e"/>
+    </g>
+    <text x="130" y="0" font-family="monospace" font-size="10" fill="#7f8c8d">green &lt; 70%</text>
+    <text x="130" y="14" font-family="monospace" font-size="10" fill="#7f8c8d">yellow ≥ 70%</text>
+    <text x="130" y="28" font-family="monospace" font-size="10" fill="#7f8c8d">red ≥ 80%</text>
+  </g>
+
+  <!-- Memory section -->
+  <g transform="translate(540, 165)">
+    <text x="0" y="0" font-family="monospace" font-size="12" fill="#95a5a6">MEM</text>
+    <g transform="translate(50, -10)">
+      <rect x="0" y="0" width="16" height="10" rx="2" fill="url(#memGrad)"/>
+      <rect x="20" y="0" width="12" height="10" rx="2" fill="url(#cpuYellow)"/>
+      <rect x="36" y="0" width="14" height="10" rx="2" fill="url(#cpuRed)"/>
+      <rect x="54" y="0" width="10" height="10" rx="2" fill="#34495e"/>
+    </g>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(540, 210)">
     <!-- Zombie -->
-    <rect x="0" y="0" width="20" height="20" rx="4" fill="#9b59b6"/>
-    <text x="28" y="15" font-family="monospace" font-size="13" fill="#9b59b6">Zombie</text>
+    <rect x="0" y="0" width="18" height="18" rx="3" fill="#9b59b6"/>
+    <text x="26" y="14" font-family="monospace" font-size="12" fill="#9b59b6">Zombie</text>
 
     <!-- Orphan -->
-    <rect x="110" y="0" width="20" height="20" rx="4" fill="#f39c12"/>
-    <text x="138" y="15" font-family="monospace" font-size="13" fill="#f39c12">Orphan</text>
+    <rect x="100" y="0" width="18" height="18" rx="3" fill="#f39c12"/>
+    <text x="126" y="14" font-family="monospace" font-size="12" fill="#f39c12">Orphan</text>
   </g>
 
-  <!-- Stats block -->
-  <g transform="translate(300, 200)">
-    <rect x="0" y="0" width="210" height="70" rx="6" fill="#1a252f" stroke="#2c3e50" stroke-width="1"/>
-
-    <text x="15" y="24" font-family="monospace" font-size="12" fill="#7f8c8d">Zombies</text>
-    <text x="90" y="24" font-family="monospace" font-size="14" fill="#9b59b6" font-weight="bold">3</text>
-
-    <text x="15" y="46" font-family="monospace" font-size="12" fill="#7f8c8d">Orphans</text>
-    <text x="90" y="46" font-family="monospace" font-size="14" fill="#f39c12" font-weight="bold">0</text>
-
-    <line x1="125" y1="10" x2="125" y2="60" stroke="#34495e" stroke-width="1"/>
-
-    <text x="140" y="24" font-family="monospace" font-size="12" fill="#7f8c8d">CPU >80%</text>
-    <text x="205" y="24" font-family="monospace" font-size="14" fill="#e74c3c" font-weight="bold">4</text>
-
-    <text x="140" y="46" font-family="monospace" font-size="12" fill="#7f8c8d">MEM >80%</text>
-    <text x="205" y="46" font-family="monospace" font-size="14" fill="#e74c3c" font-weight="bold">2</text>
+  <!-- Stats box -->
+  <g transform="translate(540, 245)">
+    <rect x="0" y="0" width="220" height="35" rx="5" fill="#1a252f" stroke="#2c3e50"/>
+    <text x="15" y="23" font-family="monospace" font-size="11" fill="#7f8c8d">847 processes</text>
+    <line x1="100" y1="8" x2="100" y2="28" stroke="#34495e" stroke-width="1"/>
+    <text x="115" y="15" font-family="monospace" font-size="10" fill="#9b59b6">Z: 3</text>
+    <text x="115" y="28" font-family="monospace" font-size="10" fill="#f39c12">O: 0</text>
+    <line x1="160" y1="8" x2="160" y2="28" stroke="#34495e" stroke-width="1"/>
+    <text x="175" y="15" font-family="monospace" font-size="10" fill="#e74c3c">CPU↑4</text>
+    <text x="175" y="28" font-family="monospace" font-size="10" fill="#e74c3c">MEM↑2</text>
   </g>
 
   <!-- Bottom bar -->
-  <rect x="0" y="275" width="800" height="25" fill="#1a252f"/>
-  <text x="20" y="292" font-family="monospace" font-size="10" fill="#34495e">proctree show --sort-by memory --color-threshold 70%</text>
-  <text x="780" y="292" font-family="monospace" font-size="10" fill="#34495e" text-anchor="end">psutil + rich</text>
+  <rect x="0" y="280" width="800" height="20" fill="#1a252f" rx="0"/>
+  <text x="20" y="294" font-family="monospace" font-size="9" fill="#34495e">proctree show --sort-by memory</text>
+  <text x="780" y="294" font-family="monospace" font-size="9" fill="#34495e" text-anchor="end">psutil + rich</text>
 </svg>
