@@ -1,7 +1,7 @@
 # proctree
 
 <!-- Header SVG -->
-<img src="assets/header.svg" width="400" height="180" alt="proctree header" />
+<img src="assets/header.svg" width="800" height="300" alt="proctree header" />
 
 <!-- Capsule-render shields.io badge -->
 [![PyPI Version](https://img.shields.io/pypi/v/proctree?color=3498db&style=flat-square)](https://pypi.org/project/proctree/)
