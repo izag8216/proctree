@@ -1,0 +1,153 @@
+# proctree
+
+<!-- Header SVG -->
+<img src="assets/header.svg" width="400" height="180" alt="proctree header" />
+
+<!-- Capsule-render shields.io badge -->
+[![PyPI Version](https://img.shields.io/pypi/v/proctree?color=3498db&style=flat-square)](https://pypi.org/project/proctree/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/proctree?color=2ecc71&style=flat-square)](https://pypi.org/project/proctree/)
+[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/izag8216/proctree/test.yml?color=f39c12&style=flat-square)](https://github.com/izag8216/proctree/actions)
+
+Process Tree Visualizer with resource annotations, zombie detection, and rich terminal rendering.
+
+## Features
+
+- **Process Tree Visualization**: Display parent-child process relationships with ASCII tree output
+- **Resource Monitoring**: CPU and memory usage bars color-coded by threshold (green/yellow/red)
+- **Zombie Detection**: Identify zombie processes with `[Z]` marker
+- **Orphan Detection**: Find orphaned processes with `[O]` marker
+- **Real-time Watch Mode**: Monitor top processes with configurable refresh interval
+- **Flexible Filtering**: Filter by user, name pattern, CPU/memory threshold, or PID subtree
+- **Export**: Output process tree as JSON for further analysis
+
+## Installation
+
+```bash
+pip install proctree
+```
+
+Or from source:
+
+```bash
+git clone https://github.com/izag8216/proctree.git
+cd proctree
+pip install -e .
+```
+
+## Quick Start
+
+```bash
+# Show full process tree
+proctree show
+
+# Show tree sorted by memory usage
+proctree show --sort-by memory
+
+# Show processes with resource bars
+proctree show --no-resources
+
+# Find specific process and show subtree
+proctree find python --show-subtree
+
+# Show only subtree of PID 1234
+proctree show --subtree 1234
+
+# Find zombie processes
+proctree zombies
+
+# Watch top 10 processes
+proctree watch --top 10 --refresh 2
+
+# Export as JSON
+proctree export -o process-tree.json
+
+# Show process statistics
+proctree stats
+```
+
+## Command Reference
+
+### `proctree show`
+
+Display the process tree.
+
+| Option | Description |
+|--------|-------------|
+| `--sort-by` | Sort by: `pid`, `cpu`, `memory`, `name`, `name_pid` (default: `pid`) |
+| `--max-depth N` | Limit tree depth to N levels |
+| `--no-resources` | Hide CPU/memory bars |
+| `--show-cmdline` | Show full command line arguments |
+| `--user USERNAME` | Filter by username |
+| `--name PATTERN` | Filter by process name pattern |
+| `--min-cpu PERCENT` | Minimum CPU % to display |
+| `--min-mem PERCENT` | Minimum memory % to display |
+| `--subtree PID` | Show only subtree rooted at PID |
+
+### `proctree find`
+
+Find processes by name or PID.
+
+```bash
+proctree find python --show-subtree
+```
+
+### `proctree zombies`
+
+Find zombie processes.
+
+```bash
+proctree zombies          # List zombies
+proctree zombies --kill    # Attempt to kill zombies
+```
+
+### `proctree watch`
+
+Watch top processes in real-time.
+
+| Option | Description |
+|--------|-------------|
+| `--top N` | Number of processes to show (default: 15) |
+| `--sort-by` | Sort by: `cpu`, `memory` (default: `memory`) |
+| `--refresh SECONDS` | Refresh interval (default: 2.0) |
+| `--count N` | Number of refreshes before exiting |
+
+### `proctree export`
+
+Export process tree as JSON.
+
+```bash
+proctree export -o tree.json
+```
+
+### `proctree stats`
+
+Show aggregate process statistics.
+
+```bash
+proctree stats
+```
+
+## Resource Color Codes
+
+| Color | Meaning |
+|-------|---------|
+| Green | Normal (< threshold) |
+| Yellow | Warning (>= 70%) |
+| Red | Critical (>= 80%) |
+
+Default threshold is 70%. Adjust with `--color-threshold` in visual output.
+
+## Requirements
+
+- Python >= 3.10
+- psutil >= 5.9.0
+- rich >= 13.0.0
+
+## License
+
+MIT License
+
+## Author
+
+izag8216

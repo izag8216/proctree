@@ -1,0 +1,7 @@
+psutil>=5.9.0
+rich>=13.0.0
+
+[dev]
+pytest>=8.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
